@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- 视口 -->
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<!-- x-editable样式 -->
+		<link rel="stylesheet" href="css/bootstrap-editable.css" />
+		<!-- bootstrap-table样式 -->
+		<link rel="stylesheet" href="css/bootstrap-table.css" />
+		<!-- jquery -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-editable.js"></script>
+		<script src="js/bootstrap-table.js"></script>
+		<script src="js/bootstrap-table-editable.js"></script>
+		<script src="js/bootstrap-table-zh-CN.js"></script>
+		<title>Bootstrap-table数据表</title>
+	</head>
+	<body>
+		<!-- bootstrap表格样式 -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<!-- 
+					 行编辑：单独对行数据时行修改功能，修改完后所传到到后台
+					 -->
+					<h3>bootstrap-table实例2(javascript API)</h3>
+					<div id="toolbar" class="btn-group">
+						<button id="btnAdd" class="btn btn-default">添加</button>
+						<button id="btnDel" class="btn btn-default">删除当前行</button>
+					</div>
+					<table id="myTab2"></table>
+
+					<script>
+						// 设置可编辑模式：行内或弹出
+						$.fn.editable.defaults.mode = 'inline';
+					
+						// 入口函数
+						$(function() {
+							// 列
+							var columns = [{
+								field: 'id',
+								title: '编号',
+								align:'center', // 文字居中显示
+							}, {
+								field: 'name',
+								title: '用户名',
+								editable:true, // 列可编辑
+							}, {
+								field: 'age',
+								title: '年龄'
+							}];
+
+							$("#myTab2").bootstrapTable({
+								columns: columns, // 表格的标题
+								url: 'data/user.json', // 加载后台数据
+								method:'get', // 请求方式
+								pagination: true, // 分页数据
+								pageSize : 10,
+								search: true, // 搜索过滤
+								toolbar:'#toolbar',// 关联工具栏操作
+								editable:true, // 数据表可编辑
+								// 保存可编辑单元格时触发以下方法
+								onEditableSave:function(field,row,rowIndex,oldValue,$el){
+									// console.log(field)
+									// console.log(row)
+									
+									// 与后台交互直接调用jquery异步请求
+									// $.ajax({
+									// 	url:'',
+									// 	data:'',
+									// 	success:function(resp){
+											
+									// 	}
+									// });
+								}
+							})
+
+						})
+					</script>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>

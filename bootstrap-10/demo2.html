@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- 视口 -->
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap-editable.css" />
+		<!-- jquery -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-editable.js"></script>
+		<title>x-editable表</title>
+	</head>
+	<body>
+		<!-- bootstrap表格样式 -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<br><br><br><br>
+					<a href="#" id="name">用户名</a>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			// 设置可编辑模式：行内或弹出
+			$.fn.editable.defaults.mode = 'inline';
+			
+			$(function(){
+				$("#name").editable();
+			})
+		
+		</script>
+
+	</body>
+</html>

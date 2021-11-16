@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- 视口 -->
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<!-- bootstrap-table样式 -->
+		<link rel="stylesheet" href="css/bootstrap-table.css" />
+		<!-- jquery -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-table.js"></script>
+		<script src="js/bootstrap-table-zh-CN.js"></script>
+		<title>Bootstrap-table数据表</title>
+	</head>
+	<body>
+		<!-- bootstrap表格样式 -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<!-- 基础表格样式: 从服务器获取数据需求使用jQuery拼接 -->
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>姓名</th>
+								<th>年龄</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>张三</td>
+								<td>18</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>李四</td>
+								<td>20</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3>bootstrap-table基本实例(不推荐)</h3>
+					<table id="myTab" data-toggle="table" data-url="data/user.json">
+						<thead>
+							<tr>
+								<th data-field="id">编号</th>
+								<th data-field="name">姓名</th>
+								<th data-field="age">年龄</th>
+							</tr>
+						</thead>
+					</table>
+
+					<h3>bootstrap-table实例2(javascript API)</h3>
+					<table id="myTab2"></table>
+
+					<script>
+						// 入口函数
+						$(function() {
+							// 列
+							var columns = [{
+								field: 'id',
+								title: '编号',
+								align:'center', // 文字居中显示
+								formatter:function(value,row,index){ // 格式化
+									return "#"+value;
+								},
+								sortable:true // 列属性排序
+							}, {
+								field: 'name',
+								title: '用户名'
+							}, {
+								field: 'age',
+								title: '年龄'
+							}];
+
+							var data = [{
+								"id": 1,
+								"name": "张三",
+								"age": 30
+							}];
+
+							$("#myTab2").bootstrapTable({
+								columns: columns, // 表格的标题
+								data: data, // 加载本地数据
+								url: 'data/user.json', // 加载后台数据
+								method:'get', // 请求方式
+								pagination: true, // 分页数据
+								pageSize : 1,
+								search: true, // 搜索过滤
+								sortable:true, // 是否启用排序
+								sortOrder: "asc", // 排序方式 asc 升序 desc 降序
+							})
+
+						})
+					</script>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>
